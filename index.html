@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>firetestp5</title>
+    <script src="p5.min.js" charset="utf-8"></script>
+
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyC-k_70BrhGd8HtCxy5aw0DUbBjE7-jW48",
+    authDomain: "test-15752.firebaseapp.com",
+    databaseURL: "https://test-15752.firebaseio.com",
+    storageBucket: "test-15752.appspot.com",
+  };
+  firebase.initializeApp(config);
+
+  var database = firebase.database();
+
+</script>
+
+    <script type="text/javascript">
+
+      function setup(){
+        createCanvas(400,400);
+        background("yellow")
+        database.ref('draw').on('child_added', function(data){
+          line(data.val().pmouseX,data.val().pmouseY,data.val().mouseX,data.val().mouseY);
+        })
+      }
+
+      function draw(){
+        if(mouseIsPressed){
+          line(pmouseX,pmouseY,mouseX,mouseY)
+          database.ref('draw').push({
+            pmouseX:pmouseX,
+            pmouseY:pmouseY,
+            mouseX:mouseX,
+            mouseY:mouseY
+          })
+        }
+      }
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
