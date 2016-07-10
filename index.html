@@ -8,6 +8,7 @@
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 <script>
   // Initialize Firebase
+  // Get your own API Key in https://firebase.google.com , this one can be deleted any moment
   var config = {
     apiKey: "AIzaSyC-k_70BrhGd8HtCxy5aw0DUbBjE7-jW48",
     authDomain: "test-15752.firebaseapp.com",
@@ -15,15 +16,13 @@
     storageBucket: "test-15752.appspot.com",
   };
   firebase.initializeApp(config);
-
   var database = firebase.database();
-
 </script>
 
     <script type="text/javascript">
 
       function setup(){
-        createCanvas(400,400);
+        createCanvas(600,400);
         background("yellow")
         database.ref('draw').on('child_added', function(data){
           line(data.val().pmouseX,data.val().pmouseY,data.val().mouseX,data.val().mouseY);
